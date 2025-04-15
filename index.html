@@ -11,24 +11,64 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Particles -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
   <!-- AOS Animation CSS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/a2e8d4d60b.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body class="bg-white text-black transition duration-300">
+<body class="transition" id="body">
+
 
   <!-- Your content will go here -->
+
+
+  <!-- ===== Hero Section Start ===== -->
+  <section class="position-relative min-vh-100 d-flex align-items-center justify-content-center px-3 py-5 animated-bg text-white" id="hero">
+    <!-- Particles Container -->
+    <div id="particles-js" style="position: absolute; width: 100%; height: 100%; z-index: 0;"></div>
+
+    <div class="container position-relative" style="z-index: 1;" data-aos="fade-up">
+        <div class="d-flex flex-column align-items-center text-center">
+        <!-- <h2 class="hero-welcome mb-3">Welcome to my portfolio</h2> -->
+        <img src="assets/images/profile.jpg" alt="Sohel Khan" class="rounded-circle shadow mb-4" style="width: 180px; height: 180px;" />
+        <h1 class="fw-bold display-4 mb-2 glow-text">Sohel Khan</h1>
+        <p class="fs-5 mb-4">
+            <span id="typewriter" class="typewriter-text"></span>
+          </p>
+        <!-- <p class="fs-5 mb-4">Web Developer | Coder | Designer</p> -->
+  
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <a href="assets/resume/Sohel_Khan_Resume.pdf" download class="btn btn-light">
+            <i class="fas fa-download me-2"></i>Download Resume
+          </a>
+          <button id="darkModeToggle" class="btn btn-outline-light">
+            <i class="fas fa-moon me-2"></i>Toggle Dark Mode
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>  
+  <!-- ===== Hero Section End ===== -->
+  
+
+
+
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- AOS Animation JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Particles JS Initialization -->
+    <script src="js/particles-config.js"></script>
 
   <!-- Custom JS -->
   <script src="js/script.js"></script>
