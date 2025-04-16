@@ -4,6 +4,7 @@ html, body {
     overflow-x: hidden;
     width: 100vw;
     transition: background-color 0.3s, color 0.3s;
+    scroll-behavior: smooth;
   }
   
   /* Profile image shadow */
@@ -15,7 +16,7 @@ html, body {
   
   .animated-bg {
     background: linear-gradient(-45deg, #1d3557, #457b9d, #a8dadc, #f1faee);
-    background-size: 400% 400%;
+    background-size: 200% 200%;
     animation: gradientFlow 15s ease infinite;
   }
   
@@ -98,6 +99,19 @@ html, body {
     color: #fff;
   }
 
+
+  /* Cursor Pointer */
+.about-img,
+.skills,
+.skill-box,
+.project-card,
+.tech {
+  cursor: pointer;
+}
+
+
+
+
   /* Smooth animation improvements */
 [data-aos] {
     transition-duration: 0.8s !important;
@@ -153,12 +167,13 @@ html[data-theme="dark"] .skill-box {
 .skill-box {
   border-radius: 12px;
   padding: 20px;
-  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  /* transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s; */
 }
 
 
 .skill-box:hover {
-  transform: translateY(-5px);
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
 }
 
 .skill-header {
@@ -278,11 +293,87 @@ html[data-theme="dark"] .skill-progress {
   .projects-section {
     position: relative;
     padding: 80px 20px;
+    overflow: hidden;
     transition: background-color 0.3s, color 0.3s;
     z-index: 1;
   }
 
-  #particles-js-projects {
+  .projects-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  .bubbles {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .bubbles li {
+    position: absolute;
+    bottom: -150px;
+    border-radius: 50%;
+    background: rgba(100, 100, 255, 0.15);
+    box-shadow: 0 0 8px rgba(100, 100, 255, 0.3);
+    animation: bubbleUp 25s linear infinite;
+    opacity: 0.7;
+  }
+  
+  /* Make sizes and positions random using nth-child */
+  .bubbles li:nth-child(1)  { width: 10px; height: 10px; left: 10%; animation-delay: 0s; animation-duration: 18s;}
+  .bubbles li:nth-child(2)  { width: 20px; height: 20px; left: 20%; animation-delay: 2s; animation-duration: 22s;}
+  .bubbles li:nth-child(3)  { width: 15px; height: 15px; left: 30%; animation-delay: 4s; animation-duration: 20s;}
+  .bubbles li:nth-child(4)  { width: 25px; height: 25px; left: 40%; animation-delay: 1s; animation-duration: 26s;}
+  .bubbles li:nth-child(5)  { width: 12px; height: 12px; left: 50%; animation-delay: 3s; animation-duration: 19s;}
+  .bubbles li:nth-child(6)  { width: 18px; height: 18px; left: 60%; animation-delay: 5s; animation-duration: 24s;}
+  .bubbles li:nth-child(7)  { width: 22px; height: 22px; left: 70%; animation-delay: 0s; animation-duration: 21s;}
+  .bubbles li:nth-child(8)  { width: 14px; height: 14px; left: 80%; animation-delay: 1s; animation-duration: 23s;}
+  .bubbles li:nth-child(9)  { width: 28px; height: 28px; left: 90%; animation-delay: 2s; animation-duration: 25s;}
+  .bubbles li:nth-child(10) { width: 16px; height: 16px; left: 15%; animation-delay: 3s; animation-duration: 22s;}
+  .bubbles li:nth-child(11) { width: 30px; height: 30px; left: 35%; animation-delay: 4s; animation-duration: 27s;}
+  .bubbles li:nth-child(12) { width: 11px; height: 11px; left: 65%; animation-delay: 5s; animation-duration: 20s;}
+  .bubbles li:nth-child(13) { width: 26px; height: 26px; left: 75%; animation-delay: 2s; animation-duration: 26s;}
+  .bubbles li:nth-child(14) { width: 13px; height: 13px; left: 85%; animation-delay: 3s; animation-duration: 21s;}
+  .bubbles li:nth-child(15) { width: 17px; height: 17px; left: 95%; animation-delay: 1s; animation-duration: 22s;}
+  
+  @keyframes bubbleUp {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(-1000px) scale(1.5);
+      opacity: 0;
+    }
+  }
+  
+  /* Theme-based color adjustment using prefers-color-scheme */
+  @media (prefers-color-scheme: dark) {
+    .bubbles li {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+    }
+  }
+  
+  @media (prefers-color-scheme: light) {
+    .bubbles li {
+      background: rgba(50, 50, 200, 0.1);
+      box-shadow: 0 0 6px rgba(50, 50, 200, 0.2);
+    }
+  }
+
+  #particles-js {
     position: absolute;
     top: 0;
     left: 0;
@@ -313,7 +404,7 @@ html[data-theme="dark"] .skill-progress {
     background-color: #ffffff;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); */
     transition: transform 0.4s, background-color 0.3s;
   }
   
@@ -327,8 +418,8 @@ html[data-theme="dark"] .skill-progress {
   }
   
   .project-card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    transform: scale(1.01);
+    transition: transform 0.2s ease;
   }
   
   .project-img {
