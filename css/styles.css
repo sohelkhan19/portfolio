@@ -253,6 +253,145 @@ html[data-theme="dark"] .skill-progress {
     .skills-grid {
       grid-template-columns: 1fr;
     }
+    .skill-box {
+      padding: 15px; /* Reduced from 20px */
+      margin: 0 10px; /* Adds some side margin */
+    }
+  
+    .skill-header {
+      gap: 10px; /* Reduced from 15px */
+    }
+  
+    .skill-header i {
+      font-size: 1.5rem; /* Reduced from 2rem */
+    }
+  
+    .skill-header h3 {
+      font-size: 1.2rem; /* Reduced from 1.5rem */
+    }
+  
+    .skill-bar {
+      height: 20px; /* Reduced from 20px */
+    }
   }
   
+  .projects-section {
+    position: relative;
+    padding: 80px 20px;
+    transition: background-color 0.3s, color 0.3s;
+    z-index: 1;
+  }
+
+  #particles-js-projects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  
+  html[data-theme="light"] .projects-section {
+    background-color: #edf6ff;
+    color: #1e293b;
+  }
+  
+  html[data-theme="dark"] .projects-section {
+    background-color: #0f172a;
+    color: #f1f5f9;
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  .project-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s, background-color 0.3s;
+  }
+  
+  html[data-theme="dark"] .project-card {
+    background-color: #1e293b;
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.05);
+  }
+    
+  html[data-theme="dark"] .project-card:hover {
+    box-shadow: 0 12px 24px rgba(255, 255, 255, 0.1);
+  }
+  
+  .project-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  .project-img {
+    width: 100%;
+    height: 200px;
+    object-fit: fill;
+    display: block;
+  }
+  
+  .project-content {
+    padding: 20px;
+    position: relative;
+    z-index: 2;  
+  }
+  
+  .project-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+  }
+  
+  .project-desc {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+  
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .tech {
+    background-color: #e2e8f0;
+    color: #1e293b;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  html[data-theme="dark"] .tech {
+    background-color: #334155;
+    color: #f1f5f9;
+  }
+  
+  /* Responsive */
+  @media (max-width: 992px) {
+    .projects-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .project-img {
+      height: 350px;
+    }
+  }
   
