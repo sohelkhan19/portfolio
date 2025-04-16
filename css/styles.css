@@ -112,3 +112,147 @@ html, body {
     transform: translateZ(0);
   }
   
+
+  /* Skills Section with Theme Support */
+.skills-section {
+  padding: 80px 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 60px;
+  transition: color 0.3s ease;
+}
+
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Light theme skill box */
+html[data-theme="light"] .skill-box {
+  background-color: #fee2e2; /* Light red */
+  color: #1e293b;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme skill box */
+html[data-theme="dark"] .skill-box {
+  background-color: #1e293b; /* Dark slate blue */
+  color: #f1f5f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+.skill-box {
+  border-radius: 12px;
+  padding: 20px;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+
+.skill-box:hover {
+  transform: translateY(-5px);
+}
+
+.skill-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.skill-header i {
+  font-size: 2rem;
+  transition: color 0.3s ease;
+}
+
+html[data-theme="light"] .skill-header i {
+  color: #dc2626; /* Red in light theme */
+}
+
+html[data-theme="dark"] .skill-header i {
+  color: #38bdf8; /* Light blue in dark theme */
+}
+
+.skill-header h3 {
+  font-size: 1.5rem;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+html[data-theme="light"] .skill-header h3 {
+  color: #1e293b;
+}
+
+html[data-theme="dark"] .skill-header h3 {
+  color: #f1f5f9;
+}
+
+.skill-bar {
+  border-radius: 8px;
+  overflow: hidden;
+  height: 20px;
+  transition: background-color 0.3s;
+}
+
+html[data-theme="light"] .skill-bar {
+  background: #fecaca; /* Light red background */
+}
+
+html[data-theme="dark"] .skill-bar {
+  background: #334155; /* Dark blueish background */
+}
+
+.skill-progress {
+  height: 100%;
+  padding-left: 10px;
+  line-height: 20px;
+  color: white;
+  font-weight: bold;
+  white-space: nowrap;
+  transition: background-color 0.3s;
+}
+
+html[data-theme="light"] .skill-progress {
+  background-color: #ef4444; /* Red bar in light theme */
+}
+
+html[data-theme="dark"] .skill-progress {
+  background-color: #0ea5e9; /* Light blue bar in dark theme */
+}
+
+/* Skill bar width handled with inline --width var */
+.skill-progress {
+  width: var(--width);
+}
+
+  
+  
+  .skill-progress::after {
+    content: attr(style);
+    display: none;
+  }
+  
+  @keyframes fillBar {
+    from {
+      width: 0;
+    }
+    to {
+      width: var(--width);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  
