@@ -1,21 +1,27 @@
 // Navbar toggle
-const overlay = document.getElementById('menuOverlay');
-    const hamburger = document.getElementById('hamburger');
+const overlay = document.getElementById("menuOverlay");
+const hamburger = document.getElementById("hamburger");
 
-    function toggleMenu(e) {
-      if (e) e.stopPropagation();
-      overlay.classList.toggle('active');
-      hamburger.classList.toggle('hide-hamburger');
-    }
-
-    // Close if click on overlay but not on links or close-btn
-    overlay.addEventListener('click', function(e) {
-      const clickedTag = e.target.tagName.toLowerCase();
-      if (clickedTag !== 'a' && !e.target.classList.contains('close-btn')) {
-        overlay.classList.remove('active');
-        hamburger.classList.remove('hide-hamburger');
-      }
-    });
+function toggleMenu(e) {
+  if (e) e.stopPropagation();
+  overlay.classList.toggle("active");
+  hamburger.classList.toggle("hide-hamburger");
+}
+// Close if click on overlay but not on links or close-btn
+overlay.addEventListener("click", function (e) {
+  const clickedTag = e.target.tagName.toLowerCase();
+  if (clickedTag !== "a" && !e.target.classList.contains("close-btn")) {
+    overlay.classList.remove("active");
+    hamburger.classList.remove("hide-hamburger");
+  }
+});
+// Auto-close overlay on link click
+document.querySelectorAll(".overlay-menu a").forEach((link) => {
+  link.addEventListener("click", () => {
+    overlay.classList.remove("active");
+    hamburger.classList.remove("hide-hamburger");
+  });
+});
 
 // Theme Toggle Functionality
 const toggleBtn = document.getElementById("darkModeToggle");
@@ -24,11 +30,11 @@ const hero = document.getElementById("hero");
 const html = document.documentElement;
 
 // Check for saved theme preference
-const savedTheme = localStorage.getItem('theme') || 'light';
-html.setAttribute('data-theme', savedTheme);
+const savedTheme = localStorage.getItem("theme") || "light";
+html.setAttribute("data-theme", savedTheme);
 
 // Set initial state based on saved theme
-if (savedTheme === 'dark') {
+if (savedTheme === "dark") {
   body.classList.add("dark-mode");
   hero.classList.remove("animated-bg");
   hero.classList.add("dark-hero");
@@ -45,14 +51,14 @@ toggleBtn.addEventListener("click", () => {
   body.classList.toggle("dark-mode");
   hero.classList.toggle("animated-bg");
   hero.classList.toggle("dark-hero");
-  
+
   // Update data-theme attribute
   const isDark = body.classList.contains("dark-mode");
-  html.setAttribute('data-theme', isDark ? 'dark' : 'light');
-  
+  html.setAttribute("data-theme", isDark ? "dark" : "light");
+
   // Save preference
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+
   // Update button text
   toggleBtn.innerHTML = isDark
     ? '<i class="fas fa-sun me-2"></i> Light Mode'
@@ -86,17 +92,32 @@ loopTitles();
 // Scroll to top
 const scrollBtn = document.getElementById("scrollTopBtn");
 
-  window.onscroll = function () {
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-      scrollBtn.style.display = "block";
-    } else {
-      scrollBtn.style.display = "none";
-    }
-  };
+window.onscroll = function () {
+  if (
+    document.body.scrollTop > 100 ||
+    document.documentElement.scrollTop > 100
+  ) {
+    scrollBtn.style.display = "block";
+  } else {
+    scrollBtn.style.display = "none";
+  }
+};
 
-  scrollBtn.onclick = function () {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+scrollBtn.onclick = function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
 
+document.getElementById("year").textContent = new Date().getFullYear();
 
-  document.getElementById("year").textContent = new Date().getFullYear();
+// Cursor Animation
+const trail = document.querySelector(".cursor-trail");
+const overlay1 = document.querySelector(".overlay-menu");
+
+document.addEventListener("mousemove", (e) => {
+  if (overlay1.classList.contains("active")) {
+    trail.style.opacity = 1;
+    trail.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+  } else {
+    trail.style.opacity = 0;
+  }
+});
