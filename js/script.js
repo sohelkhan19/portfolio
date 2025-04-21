@@ -1,3 +1,22 @@
+// Navbar toggle
+const overlay = document.getElementById('menuOverlay');
+    const hamburger = document.getElementById('hamburger');
+
+    function toggleMenu(e) {
+      if (e) e.stopPropagation();
+      overlay.classList.toggle('active');
+      hamburger.classList.toggle('hide-hamburger');
+    }
+
+    // Close if click on overlay but not on links or close-btn
+    overlay.addEventListener('click', function(e) {
+      const clickedTag = e.target.tagName.toLowerCase();
+      if (clickedTag !== 'a' && !e.target.classList.contains('close-btn')) {
+        overlay.classList.remove('active');
+        hamburger.classList.remove('hide-hamburger');
+      }
+    });
+
 // Theme Toggle Functionality
 const toggleBtn = document.getElementById("darkModeToggle");
 const body = document.body;
@@ -63,3 +82,21 @@ function loopTitles() {
 
 // Initialize everything
 loopTitles();
+
+// Scroll to top
+const scrollBtn = document.getElementById("scrollTopBtn");
+
+  window.onscroll = function () {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      scrollBtn.style.display = "block";
+    } else {
+      scrollBtn.style.display = "none";
+    }
+  };
+
+  scrollBtn.onclick = function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+
+  document.getElementById("year").textContent = new Date().getFullYear();
