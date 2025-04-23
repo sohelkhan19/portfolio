@@ -121,3 +121,38 @@ document.addEventListener("mousemove", (e) => {
     trail.style.opacity = 0;
   }
 });
+
+
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+  const msgEl = document.getElementById("formMsg");
+
+  msgEl.innerText = "Sending...";
+
+  fetch(form.action, {
+    method: "POST",
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      msgEl.style.color = "lightgreen";
+      msgEl.innerText = "Your message was sent to Sohel khan successfully! 🚀";
+      form.reset();
+    } else {
+      return response.json().then(data => {
+        msgEl.style.color = "salmon";
+        msgEl.innerText = data.error || "Oops! Something went wrong.";
+      });
+    }
+  })
+  .catch(() => {
+    msgEl.style.color = "salmon";
+    msgEl.innerText = "Something went wrong. Try again later.";
+  });
+});

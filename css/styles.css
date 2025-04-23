@@ -369,6 +369,14 @@ img.rounded-circle {
   margin: 0 auto;
 }
 
+/* Updated Hover Effects for Skill Boxes */
+.skill-box {
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
 /* Light theme skill box */
 html[data-theme="light"] .skill-box {
   background-color: #fee2e2; /* Light red */
@@ -383,15 +391,18 @@ html[data-theme="dark"] .skill-box {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.skill-box {
-  border-radius: 12px;
-  padding: 20px;
-  /* transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s; */
+/* Light theme hover */
+html[data-theme="light"] .skill-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background-color: #fecaca; /* Slightly darker red on hover */
 }
 
-.skill-box:hover {
+/* Dark theme hover */
+html[data-theme="dark"] .skill-box:hover {
   transform: scale(1.05);
-  transition: transform 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  background-color: #334155; /* Slightly lighter blue on hover */
 }
 
 .skill-header {
@@ -481,24 +492,31 @@ html[data-theme="dark"] .skill-progress {
 }
 
 @media (max-width: 768px) {
+  .skills-section .skills-grid {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+
   .skills-grid {
     grid-template-columns: 1fr;
   }
+
   .skill-box {
-    padding: 15px; /* Reduced from 20px */
-    margin: 0 10px; /* Adds some side margin */
+    border-radius: 12px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .skill-header {
-    gap: 10px; /* Reduced from 15px */
+    gap: 10px;
   }
 
   .skill-header i {
-    font-size: 1.5rem; /* Reduced from 2rem */
+    font-size: 1.5rem;
   }
 
   .skill-header h3 {
-    font-size: 1.2rem; /* Reduced from 1.5rem */
+    font-size: 1.2rem;
   }
 
   .skill-bar {
@@ -506,6 +524,31 @@ html[data-theme="dark"] .skill-progress {
   }
 }
 
+@media screen and (max-width: 480px) {
+  .skills-section .skills-grid {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .skill-header {
+    gap: 5px;
+  }
+
+  .skill-header i {
+    font-size: 1.2rem;
+  }
+
+  .skill-header h3 {
+    font-size: 1rem;
+  }
+
+  .skill-bar {
+    height: 20px; /* Reduced from 20px */
+  }
+  
+}
+
+/* Projects css */
 .projects-section {
   position: relative;
   padding: 80px 20px;
@@ -660,22 +703,31 @@ html[data-theme="dark"] .projects-section {
   background-color: #ffffff;
   border-radius: 16px;
   overflow: hidden;
-  /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); */
-  transition: transform 0.4s, background-color 0.3s;
+  transition: transform 0.4s, background-color 0.3s, box-shadow 0.4s;
+  position: relative;
 }
 
 html[data-theme="dark"] .project-card {
   background-color: #1e293b;
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
 }
 
 html[data-theme="dark"] .project-card:hover {
-  box-shadow: 0 12px 24px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
 }
 
 .project-card:hover {
-  transform: scale(1.01);
-  transition: transform 0.2s ease;
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 255, 200, 0.15), 0 12px 36px rgba(0, 255, 200, 0.1);
+}
+
+.media-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000; /* fallback background */
+  position: relative;
 }
 
 .project-img {
@@ -723,16 +775,96 @@ html[data-theme="dark"] .tech {
   color: #f1f5f9;
 }
 
+/* Project Video Style */
+.project-video, .fallback-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* covers the whole box; switch to contain if you want full video shown even with black bars */
+  display: block;
+}
+
+.fallback-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Buttons */
+.project-links {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.project-btn {
+  text-decoration: none;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.live-btn {
+  background: #00b894;
+  color: white;
+}
+
+.code-btn {
+  background: #0984e3;
+  color: white;
+}
+
+.project-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Theme support for dark mode if needed */
+html[data-theme="dark"] .live-btn {
+  background: #00cec9;
+}
+
+html[data-theme="dark"] .code-btn {
+  background: #74b9ff;
+}
+
 /* Responsive */
 @media (max-width: 992px) {
   .projects-grid {
     grid-template-columns: 1fr 1fr;
+    padding: 0 30px;
   }
 }
 
 @media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .projects-grid {
+    padding: 0 15px;
+  }
+  .project-btn {
+    text-decoration: none;
+    padding: 5px 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  .tech {
+    background-color: #e2e8f0;
+    color: #1e293b;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    transition: background-color 0.3s, color 0.3s;
   }
 }
 
@@ -741,6 +873,7 @@ html[data-theme="dark"] .tech {
     height: 350px;
   }
 }
+
 
 /* experience css */
 

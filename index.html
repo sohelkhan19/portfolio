@@ -327,11 +327,12 @@
       <div class="projects-grid">
         <!-- Project Card 1 -->
         <div class="project-card" data-aos="zoom-in">
-          <img
-            src="assets/images/projects/miniblog.png"
-            alt="Project 1"
-            class="project-img"
-          />
+          <div class="media-wrapper">
+            <video class="project-video" autoplay loop muted controls playsinline>
+              <source src="assets/videos/miniblog.mp4" type="video/mp4" />
+              <img src="assets/images/projects/miniblog.png" alt="Mini Blog Preview" class="fallback-img" />
+            </video>
+          </div>
           <div class="project-content">
             <h3 class="project-title">Mini Blog System</h3>
             <p class="project-desc">
@@ -345,16 +346,21 @@
               <span class="tech">MySQL</span>
               <span class="tech">Bootstrap</span>
             </div>
+            <div class="project-links">
+              <a href="https://miniblog-cvqn.onrender.com/" target="_blank" class="project-btn live-btn">🌐 Live Demo</a>
+              <a href="https://github.com/sohelkhan19/miniblog" target="_blank" class="project-btn code-btn">📂 View Resource</a>
+            </div>
           </div>
         </div>
 
         <!-- Project Card 2 -->
         <div class="project-card" data-aos="zoom-in">
-          <img
-            src="assets/images/projects/chatapp.png"
-            alt="Project 2"
-            class="project-img"
-          />
+          <div class="media-wrapper">
+            <video class="project-video" autoplay loop muted controls playsinline>
+              <source src="assets/videos/chatapp.mp4" type="video/mp4" />
+              <img src="assets/images/projects/chatapp.png" alt="Chat App Preview" class="fallback-img" />
+            </video>
+          </div>
           <div class="project-content">
             <h3 class="project-title">Chat Application</h3>
             <p class="project-desc">
@@ -369,16 +375,21 @@
               <span class="tech">Html/CSS</span>
               <span class="tech">PHP</span>
             </div>
+            <div class="project-links">
+              <a href="https://sohelkhan19.github.io/chatapp/" target="_blank" class="project-btn live-btn">🌐 Live Demo</a>
+              <a href="https://github.com/sohelkhan19/chatapp" target="_blank" class="project-btn code-btn">📂 View Resource</a>
+            </div>
           </div>
         </div>
 
         <!-- Project Card 3 -->
         <div class="project-card" data-aos="zoom-in">
-          <img
-            src="assets/images/projects/harmoni.png"
-            alt="Project 3"
-            class="project-img"
-          />
+          <div class="media-wrapper">
+            <video class="project-video" autoplay loop muted controls playsinline>
+              <source src="assets/videos/" type="video/mp4" />
+              <img src="assets/images/projects/harmoni.png" alt="Mini Blog Preview" class="fallback-img" />
+            </video>
+          </div>
           <div class="project-content">
             <h3 class="project-title">Admin Panel of Social Media</h3>
             <p class="project-desc">
@@ -391,6 +402,10 @@
               <span class="tech">JavaScript</span>
               <span class="tech">Html/CSS</span>
               <span class="tech">AJAX</span>
+            </div>
+            <div class="project-links">
+              <a href="" target="_blank" class="project-btn live-btn">🌐 Live Demo</a>
+              <a href="https://github.com/sohelkhan19/harmony" target="_blank" class="project-btn code-btn">📂 View Resource</a>
             </div>
           </div>
         </div>
@@ -524,11 +539,12 @@
       <!-- Flex row with form and map -->
       <div class="form-map-wrapper">
         <!-- Contact Form -->
-        <form class="contact-form" data-aos="fade-right">
-          <input type="text" placeholder="Your Name" required />
-          <input type="email" placeholder="Your Email" required />
-          <textarea placeholder="Your Message" rows="6" required></textarea>
+        <form id="contactForm" class="contact-form" data-aos="fade-right" action="https://formspree.io/f/xwpokbkv" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
           <button type="submit">Send Message 🚀</button>
+          <p id="formMsg" style="margin-top:10px;"></p>
         </form>
 
         <!-- Map Container -->
@@ -566,16 +582,17 @@
 
         <!-- Social Icons -->
         <div class="social-icons">
-          <a href="https://github.com/yourusername" target="_blank"
+          <a href="https://github.com/sohelkhan19" target="_blank"
             ><i class="fab fa-github"></i
           ></a>
-          <a href="https://linkedin.com/in/yourusername" target="_blank"
+          <a href="https://www.linkedin.com/in/sohelkhan19/" target="_blank"
             ><i class="fab fa-linkedin-in"></i
           ></a>
           <a href="https://twitter.com/yourusername" target="_blank"
-            ><i class="fab fa-twitter"></i
+            ><i class="fab fa-x-twitter"></i
           ></a>
-          <a href="https://wa.me/yourwhatsapplink" target="_blank"
+          <a href="https://wa.me/919106645776?text=Hi%20Sohel%2C%20I%20saw%20your%20portfolio!
+          " target="_blank"
             ><i class="fab fa-whatsapp"></i
           ></a>
           <a
