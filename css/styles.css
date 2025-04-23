@@ -854,7 +854,7 @@ html[data-theme="dark"] .code-btn {
     text-decoration: none;
     padding: 5px 10px;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     border-radius: 8px;
     transition: background-color 0.3s, transform 0.2s;
   }

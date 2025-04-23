@@ -142,7 +142,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
   .then(response => {
     if (response.ok) {
       msgEl.style.color = "lightgreen";
-      msgEl.innerText = "Your message was sent to Sohel khan successfully! 🚀";
+      msgEl.innerText = "Your message was sent to Sohel khan successfully! 🤗";
       form.reset();
     } else {
       return response.json().then(data => {
