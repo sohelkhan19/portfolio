@@ -223,6 +223,7 @@ img.rounded-circle {
 }
 
 .about-img {
+  cursor: pointer;
   max-width: 100%;
   height: auto;
   transition: transform 0.3s ease;
@@ -244,8 +245,13 @@ img.rounded-circle {
   line-height: 1.6;
 }
 
+.text-grey-400{
+  color: #ababab;
+}
+
 /* Skills badges */
 .skills .badge {
+  cursor: pointer;
   font-size: 0.9rem;
   padding: 0.6em 1em;
   border-radius: 999px;
@@ -756,6 +762,7 @@ html[data-theme="dark"] .project-card:hover {
 }
 
 .tech-stack {
+  cursor: pointer;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -866,6 +873,13 @@ html[data-theme="dark"] .code-btn {
     font-size: 0.7rem;
     transition: background-color 0.3s, color 0.3s;
   }
+  .project-title {
+    font-size: 1.1rem;
+  }
+  .project-desc {
+    font-size: 0.7rem;
+  }
+
 }
 
 @media (min-width: 768px) {

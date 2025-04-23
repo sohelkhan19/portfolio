@@ -166,3 +166,25 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
     msgEl.innerText = "Something went wrong. Try again later.";
   });
 });
+
+// Video and image logic for projects
+document.querySelectorAll('.project-card').forEach(card => {
+  const video = card.querySelector('.project-video');
+  const fallbackImg = card.querySelector('.fallback-img');
+
+  // Hide fallback image initially
+  fallbackImg.style.display = 'none';
+
+  // Handle video error
+  video.onerror = function () {
+    video.style.display = 'none';
+    fallbackImg.style.display = 'block';
+  };
+
+  // Optional: If source fails to load, this also catches it
+  const source = video.querySelector('source');
+  source.addEventListener('error', () => {
+    video.style.display = 'none';
+    fallbackImg.style.display = 'block';
+  });
+});
