@@ -1448,17 +1448,17 @@ html[data-theme="dark"] .icon-wrap {
 }
 
 .cursor-trail {
-  position: fixed;
   top: 0;
   left: 0;
+  position: fixed;
   width: 15px;
   height: 15px;
   border-radius: 50%;
   background: #00f0ff;
-  box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+  box-shadow: 0 0 15px #00f0ff;
   pointer-events: none;
-  z-index: 1003;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease;
+  z-index: 9999;
   opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s ease-out, opacity 0.2s ease;
 }
