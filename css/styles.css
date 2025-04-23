@@ -1462,3 +1462,9 @@ html[data-theme="dark"] .icon-wrap {
   transform: translate(-50%, -50%);
   transition: transform 0.05s ease-out, opacity 0.2s ease;
 }
+
+@media (max-width: 768px) {
+  #cursorTrail {
+    display: none !important;
+  }
+}
