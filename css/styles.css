@@ -223,7 +223,7 @@ img.rounded-circle {
 }
 
 .about-img {
-  cursor: pointer;
+  /* cursor: pointer; */
   max-width: 100%;
   height: auto;
   transition: transform 0.3s ease;
@@ -251,7 +251,7 @@ img.rounded-circle {
 
 /* Skills badges */
 .skills .badge {
-  cursor: pointer;
+  /* cursor: pointer; */
   font-size: 0.9rem;
   padding: 0.6em 1em;
   border-radius: 999px;
@@ -380,7 +380,7 @@ img.rounded-circle {
   border-radius: 12px;
   padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 /* Light theme skill box */
@@ -415,7 +415,7 @@ html[data-theme="dark"] .skill-box:hover {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .skill-header i {
@@ -762,7 +762,7 @@ html[data-theme="dark"] .project-card:hover {
 }
 
 .tech-stack {
-  cursor: pointer;
+  /* cursor: pointer; */
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -939,7 +939,7 @@ html[data-theme="dark"] .experience-section {
   padding: 20px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .timeline-content:hover {
