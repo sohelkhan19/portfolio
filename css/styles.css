@@ -531,12 +531,18 @@ html[data-theme="dark"] .skill-progress {
 }
 
 @media screen and (max-width: 480px) {
+  .skill-box{
+    padding: 15px;
+  }
+
   .skills-section .skills-grid {
     margin-left: 20px;
     margin-right: 20px;
   }
 
   .skill-header {
+    display: flex;
+    align-items: center;
     gap: 5px;
   }
 
@@ -549,7 +555,7 @@ html[data-theme="dark"] .skill-progress {
   }
 
   .skill-bar {
-    height: 20px; /* Reduced from 20px */
+    height: 20px; 
   }
   
 }
