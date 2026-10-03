@@ -53,6 +53,7 @@ function initThemeToggle() {
   // Retrieve saved theme or default to dark
   const savedTheme = localStorage.getItem('sohel_theme') || 'dark';
   html.setAttribute('data-theme', savedTheme);
+  html.setAttribute('data-bs-theme', savedTheme);
   updateThemeIcon(savedTheme);
 
   if (themeToggleBtn) {
@@ -60,6 +61,7 @@ function initThemeToggle() {
       const currentTheme = html.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', newTheme);
+      html.setAttribute('data-bs-theme', newTheme);
       localStorage.setItem('sohel_theme', newTheme);
       updateThemeIcon(newTheme);
     });
@@ -78,6 +80,9 @@ function updateThemeIcon(theme) {
    2. CUSTOM MOUSE CURSOR, MAGNETIC FOLLOWER & SPOTLIGHT
    -------------------------------------------------------------------------- */
 function initCursorAndSpotlight() {
+  // Mobile / touch devices do not have fine cursor pointers; exit to save resources and avoid touch-tilt jitter
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
   const dot = document.querySelector('.cursor-dot');
   const ring = document.querySelector('.cursor-ring');
 
@@ -144,7 +149,7 @@ function initCursorAndSpotlight() {
     });
   });
 
-  // Spotlight card & 3D Tilt calculation
+  // Dynamic radial spotlight illumination on cards (Zero-vibration, pure GPU stability)
   const cards = document.querySelectorAll('.spotlight-card');
   cards.forEach((card) => {
     card.addEventListener('mousemove', (e) => {
@@ -155,18 +160,11 @@ function initCursorAndSpotlight() {
       // Set CSS variables for radial gradient spotlight
       card.style.setProperty('--mouse-x', `${x}px`);
       card.style.setProperty('--mouse-y', `${y}px`);
-
-      // 3D Tilt (Subtle)
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -4;
-      const rotateY = ((x - centerX) / centerX) * 4;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
     });
 
     card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+      card.style.removeProperty('--mouse-x');
+      card.style.removeProperty('--mouse-y');
     });
   });
 }
@@ -180,7 +178,7 @@ function initTypewriter() {
 
   const phrases = [
     "Laravel & PHP Architect",
-    "Custom WordPress & WooCommerce Specialist",
+    "WordPress & WooCommerce Specialist",
     "Custom Plugin & Theme Developer",
     "Scalable RESTful API Engineer"
   ];
@@ -229,6 +227,12 @@ function initGsapAnimations() {
   }
 
   gsap.registerPlugin(ScrollTrigger);
+
+  // Prevent mobile browser URL bar expand/collapse from causing jumpy ScrollTrigger recalculations
+  ScrollTrigger.config({
+    ignoreMobileResize: true,
+    autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load'
+  });
 
   // Hero Section Staggered Entrance
   const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -348,7 +352,7 @@ function initNavigation() {
     } else {
       navbar.classList.remove('scrolled');
     }
-  });
+  }, { passive: true });
 
   function openDrawer() {
     if (!drawer) return;
@@ -1087,7 +1091,7 @@ function initScrollTop() {
     } else {
       scrollBtn.classList.remove('visible');
     }
-  });
+  }, { passive: true });
 
   scrollBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
