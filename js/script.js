@@ -83,29 +83,56 @@ function initCursorAndSpotlight() {
 
   if (!dot || !ring) return;
 
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let ringX = mouseX;
-  let ringY = mouseY;
+  let mouseX = -100;
+  let mouseY = -100;
+  let ringX = -100;
+  let ringY = -100;
+  let isFirstMove = true;
 
   window.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+
+    if (isFirstMove) {
+      ringX = mouseX;
+      ringY = mouseY;
+      isFirstMove = false;
+      dot.style.opacity = '1';
+      ring.style.opacity = '0.6';
+    }
+
+    // Always preserve translate(-50%, -50%) so dot is dead center at mouse coordinates
+    dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
   });
 
-  // Smooth lerp for outer ring
+  // Smooth lerp for outer ring with exact center matching
   function renderCursor() {
-    ringX += (mouseX - ringX) * 0.15;
-    ringY += (mouseY - ringY) * 0.15;
-    ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
+    if (!isFirstMove) {
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      // Always preserve translate(-50%, -50%) so ring center matches dot center
+      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%)`;
+    }
     requestAnimationFrame(renderCursor);
   }
   renderCursor();
 
+  // Hide cursor cleanly when mouse leaves the browser window
+  document.addEventListener('mouseleave', () => {
+    dot.style.opacity = '0';
+    ring.style.opacity = '0';
+  });
+
+  document.addEventListener('mouseenter', () => {
+    if (!isFirstMove) {
+      dot.style.opacity = '1';
+      ring.style.opacity = '0.6';
+    }
+  });
+
   // Hover triggers for magnetic cursor
   const interactiveTargets = document.querySelectorAll(
-    'a, button, .spotlight-card, .cluster-skill-pill, .filter-btn, .micro-tab-btn, .tech-tag-badge'
+    'a, button, .spotlight-card, .cluster-skill-pill, .filter-btn, .micro-tab-btn, .tech-tag-badge, .scenario-pill, .quick-chip'
   );
 
   interactiveTargets.forEach((target) => {
