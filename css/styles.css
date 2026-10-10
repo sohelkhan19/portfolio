@@ -480,7 +480,6 @@ html[data-bs-theme="light"] .modal-custom p.text-muted {
 
 body.drawer-open {
   overflow: hidden !important;
-  touch-action: none;
 }
 
 .mobile-nav-drawer {
@@ -502,6 +501,8 @@ body.drawer-open {
   transform: translateY(-12px);
   transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   overflow-y: auto;
+  overscroll-behavior-y: contain;
+  touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -943,7 +944,6 @@ html[data-theme="light"] .mobile-nav-drawer {
 .spotlight-card:hover {
   border-color: var(--border-highlight);
   box-shadow: var(--shadow-hover);
-  transform: translateY(-6px);
 }
 
 /* --------------------------------------------------------------------------
@@ -1194,7 +1194,13 @@ html[data-theme="light"] .mobile-nav-drawer {
 }
 
 @media (max-width: 900px) {
-  .skills-clusters-grid { grid-template-columns: 1fr; }
+  .skills-clusters-grid { 
+    grid-template-columns: 1fr; 
+    gap: 24px;
+  }
+  .cluster-card {
+    padding: 24px 20px;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -2427,12 +2433,24 @@ html[data-theme="light"] .modal-custom .btn-close {
   }
 }
 
-/* Touch device stability: prevent accidental tilt/shift on tap */
-@media (hover: none), (pointer: coarse) {
-  .spotlight-card:hover {
-    transform: none !important;
-  }
-  .channel-link:hover {
+/* Touch device & mobile stability: prevent cards and pills from moving/stacking on tap or hover */
+@media (max-width: 992px), (hover: none), (pointer: coarse) {
+  .spotlight-card,
+  .spotlight-card:hover,
+  .spotlight-card:focus,
+  .spotlight-card:active,
+  .cluster-card,
+  .cluster-card:hover,
+  .project-card-interactive,
+  .project-card-interactive:hover,
+  .channel-link,
+  .channel-link:hover,
+  .pillar-box,
+  .pillar-box:hover,
+  .cluster-skill-pill,
+  .cluster-skill-pill:hover,
+  .tech-tag-badge,
+  .tech-tag-badge:hover {
     transform: none !important;
   }
 }

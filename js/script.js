@@ -273,6 +273,7 @@ function initGsapAnimations() {
     stagger: 0.15,
     duration: 0.8,
     ease: 'power2.out',
+    clearProps: 'transform',
   });
 
   // Staggered reveal for Project cards
@@ -287,6 +288,7 @@ function initGsapAnimations() {
     stagger: 0.12,
     duration: 0.8,
     ease: 'power2.out',
+    clearProps: 'transform',
   });
 
   // Timeline entries slide-in
@@ -372,9 +374,34 @@ function initNavigation() {
     if (window.portfolioAudio) window.portfolioAudio.playTick();
   }
 
-  // Hamburger toggle on click and touchend
+  // Mobile drawer touch drag tracking (prevents closing while scrolling nav items)
+  let touchStartY = 0;
+  let touchStartX = 0;
+  let isScrollingNav = false;
+
+  if (drawer) {
+    drawer.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length > 0) {
+        touchStartY = e.touches[0].clientY;
+        touchStartX = e.touches[0].clientX;
+        isScrollingNav = false;
+      }
+    }, { passive: true });
+
+    drawer.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches.length > 0) {
+        const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
+        const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
+        if (deltaY > 8 || deltaX > 8) {
+          isScrollingNav = true;
+        }
+      }
+    }, { passive: true });
+  }
+
+  // Hamburger toggle on click
   if (hamburger && drawer) {
-    const handleHamburger = (e) => {
+    hamburger.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       if (drawer.classList.contains('open')) {
@@ -382,38 +409,28 @@ function initNavigation() {
       } else {
         openDrawer();
       }
-    };
-    hamburger.addEventListener('click', handleHamburger);
-    hamburger.addEventListener('touchend', handleHamburger, { passive: false });
+    });
   }
 
-  // Close button click and touchend
+  // Close button click
   if (closeBtn && drawer) {
-    const handleClose = (e) => {
+    closeBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       closeDrawer();
-    };
-    closeBtn.addEventListener('click', handleClose);
-    closeBtn.addEventListener('touchend', handleClose, { passive: false });
+    });
   }
 
-  // Close drawer on clicking/tapping any link inside
+  // Close drawer ONLY on clicking genuine links (never while scrolling nav items)
   if (drawer) {
     drawer.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
+        if (isScrollingNav) {
+          e.preventDefault();
+          return;
+        }
         closeDrawer();
       });
-      link.addEventListener('touchend', () => {
-        closeDrawer();
-      });
-    });
-
-    // Close on tapping drawer background backdrop
-    drawer.addEventListener('click', (e) => {
-      if (e.target === drawer) {
-        closeDrawer();
-      }
     });
 
     // Close on Escape key
